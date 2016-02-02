@@ -45,6 +45,8 @@ def is_not_black(pixel_tuple):
 def is_white(pixel_tuple):
     return pixel_tuple == (255, 255, 255)
 
+from  scipy.stats import linregress
+
 
 def box_count(pixels, box_sizes, interesting_pixel_function):
 
@@ -80,23 +82,11 @@ def box_count(pixels, box_sizes, interesting_pixel_function):
         print box_count
         gy.append(math.log(box_count))
 
-    number_of_points = len(box_sizes)
+    print gx, gy
 
-    # simple linear regression
-    x_ = 0.0
-    y_ = 0.0
-    x2_ = 0.0
-    xy_ = 0.0
-    for j in range(number_of_points):
-        x_ += gx[j]
-        y_ += gy[j]
-        x2_ += gx[j] ** 2
-        xy_ += gx[j] * gy[j]
-    x_ = x_ / number_of_points
-    y_ = y_ / number_of_points
-    x2_ = x2_ / number_of_points
-    xy_ = xy_ / number_of_points
-    b = (xy_ - x_ * y_) / (x2_ - x_ ** 2) # slope of the regression line
+    slope, intercept, r_value, p_value, std_err = linregress(gx, gy)
+    return slope
+
 
     return b
 
