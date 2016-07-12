@@ -88,8 +88,6 @@ def box_count(pixels, box_sizes, interesting_pixel_function):
     return slope
 
 
-    return b
-
 if __name__ == "__main__":
 
     config = configuration(required_config)
