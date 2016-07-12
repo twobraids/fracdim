@@ -29,13 +29,13 @@ required_config.add_option(
 required_config.add_option(
     'interesting_pixel_function',
     default='box_count.is_not_black',
-    doc='name of an image file',
+    doc='name of a method to judge a pixel',
     from_string_converter=str_to_python_object
 )
 required_config.add_option(
     'box_sizes',
     default='100, 50, 25, 10',
-    doc='name of an image file',
+    doc='a list of integers to use as box sizes',
     from_string_converter=partial(list_converter, item_converter=int)
 )
 
